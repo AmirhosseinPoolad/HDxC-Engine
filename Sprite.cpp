@@ -4,15 +4,13 @@
 #include "stb_image.h"
 
 
-Sprite::Sprite(const char* texture_path, Shader* shader, int s_width, int s_height) {
+Sprite::Sprite(const char* texture_path, Shader* shader) {
 	s_shader = shader;
 
 	glGenBuffers(1, &s_VBO); //generating the VBO, VAO and EBO
 	glGenVertexArrays(1, &s_VAO);
 	glBindVertexArray(s_VAO);
 	glGenBuffers(1, &s_EBO);
-	SCREEN_HEIGHT = s_height;
-	SCREEN_WIDTH = s_width;
 
 	unsigned char* data = stbi_load("container.jpg", &t_width, &t_height, &nr_channel, 0);
 
@@ -29,10 +27,10 @@ Sprite::Sprite(const char* texture_path, Shader* shader, int s_width, int s_heig
 	//hard coded for now, change later
 	float vertices[] = {
 		// positions                   uv coords
-		  1.0f,  1.0f, 0.0f,           1.0f, 1.0f,
-		  1.0f, -1.0f, 0.0f,           1.0f, 0.0f,
-		 -1.0f,  1.0f, 0.0f,           0.0f, 1.0f,
-		 -1.0f, -1.0f, 0.0f,           0.0f, 0.0f
+		  0.5f,  0.5f, 0.0f,           1.0f, 1.0f,
+		  0.5f, -0.5f, 0.0f,           1.0f, 0.0f,
+		 -0.5f,  0.5f, 0.0f,           0.0f, 1.0f,
+		 -0.5f, -0.5f, 0.0f,           0.0f, 0.0f
 	};
 
 	unsigned int indices[] = {
